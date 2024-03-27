@@ -1,45 +1,29 @@
-import User from "../models/User.js"
-import * as Yup from 'yup'
+import jwt from 'jsonwebtoken'
+import authConfig from '../../config/auth'
 
-const { v4 } = require("uuid")
+export default (request, response, next) => {
+const authToken = request.headers.authorization
 
-class UserController {
-    async store(request, response) {
-        const schema = Yup.object().shape({
-            name: Yup.string().required(),
-            email: Yup.string().email().required(),
-            password: Yup.string().required().min(6),
-            admin: Yup.boolean(),
-        })
-
-        try {
-            await schema.validateSync(request.body, { abortEarly: false })
-        } catch (err) {
-            return response.status(400).json({ error: err.errors })
-        }
-
-        const { name, email, password, admin } = request.body
-
-        const userExists = await User.findOne({
-            where: { email },
-        })
-
-        if(userExists){
-            return response.status(400).json({ error: 'User already exists!' })
-        }
-
-        console.log(userExists)
-
-        const user = await User.create({
-            id: v4(),
-            name,
-            email,
-            password,
-            admin
-        })
-
-        return response.status(201).json({ id: user.id, name, email, admin })
-    }
+if(!authToken){
+    return response.status(401).json({ error: 'Token not provided' })
 }
 
-export default new UserController()
+const token = authToken.split(' ')[1]
+
+try{
+
+    jwt.verify(token, authConfig.secret, function(err, decoded){
+        if(err){
+            throw new Error()
+        }
+
+        request.userId = decoded.id
+        request.userName = decoded.name
+
+        return next()
+    })
+}catch(err){
+    return response.status(401).json({ error: 'Token is invalid' })
+}
+
+}
