@@ -3,53 +3,89 @@ import Category from '../models/Category';
 import User from '../models/User';
 
 class CategoryController {
-  async store(request, response) {
+  async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
     });
 
     try {
-      await schema.validateSync(request.body, { abortEarly: false });
+      await schema.validateSync(req.body, { abortEarly: false });
     } catch (err) {
-      return response.status(400).json({ error: err.errors });
+      return res.status(400).json({ error: err.errors });
     }
 
-    const { admin: isAdmin } = await User.findByPk(request.userId);
-
+    const { admin: isAdmin } = await User.findByPk(req.userId);
     if (!isAdmin) {
-      return response.status(401).json();
+      return res.status(401).json();
     }
 
-    const { name } = request.body;
+    const { name } = req.body;
 
-    let path;
-    if (request.file) {
-      path = request.file.filename;
-    }
+    const { filename: path } = req.file;
+    
 
     const categoryExists = await Category.findOne({
-      where: {
-        name,
-      },
+      where: { name },
     });
-
     if (categoryExists) {
-      return response.status(400).json({ error: 'Category already exists' });
+      return res.status(400).json({ error: 'Category already exists' });
     }
 
-    const category = await Category.create({ name, path });
-
-    return response.status(201).json(category);
+    const { id } = await Category.create({ name, path });  ///
+    return res.json({ name, id });
   }
 
-  async index(request, response) {
-    const categories = await Category.findAll();
-
-    return response.json(categories);
+  async index(req, res) {
+    const category = await Category.findAll();
+    return res.json(category);
   }
 
-  async update(request, response) {
-    
+
+
+
+  async update(req, res) {
+    try {
+      const schema = Yup.object().shape({
+        name: Yup.string(),
+      });
+
+      try {
+        await schema.validateSync(req.body, { abortEarly: false });
+      } catch (err) {
+        return res.status(400).json({ error: err.errors });
+      }
+
+      const { admin: isAdmin } = await User.findByPk(req.userId);
+      if (!isAdmin) {
+        return res.status(401).json();
+      }
+
+      const { name } = req.body;
+
+      const { id } = req.params;
+
+
+
+      const category = await Category.findByPk(id);
+
+      if (!category) {
+        return res
+        .status(404)
+        .json({ error: 'Category not found' });
+      }
+
+      let path
+      if(req.file){
+        path = req.file.filename
+      }
+
+      await Category.update({ name, path }, { where: { id } });
+
+      return res.status(200).json({ name, id });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
   }
 }
 

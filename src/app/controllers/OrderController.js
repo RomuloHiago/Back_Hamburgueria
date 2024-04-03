@@ -45,9 +45,9 @@ class OrderController {
                 id: product.id,
                 name: product.name,
                 price: product.price,
-                category: product.category,
+                category: product.category.name,
                 url: product.url,
-                quantity: request.body.products[productIndex].quantity
+                quantity: request.body.products[productIndex].quantity,
             }
 
             return newProduct
