@@ -37,4 +37,5 @@ app.listen(3001)
  // docker run --name mongo -p 27017:27017 -d -t mongo
  // yarn add mongoose
  // https://www.mongodb.com/try/download/compass -> fazer download
- // 
+ // yarn add cors
+ //
