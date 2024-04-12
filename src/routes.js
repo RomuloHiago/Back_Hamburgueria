@@ -18,7 +18,7 @@ routes.post('/users', UserController.store)
 
 routes.post('/sessions', SessionController.store)
 
-routes.use(authMiddleware) // será chamado por todas as rotas ABAIXO
+routes.use(authMiddleware) 
 
 routes.post('/products', upload.single('file'), ProductController.store)
 routes.get('/products', ProductController.index)
@@ -30,6 +30,8 @@ routes.put('/categories/:id', upload.single('file'), CategoryController.update)
 
 routes.post('/orders', OrderController.store)
 routes.put('/orders/:id', OrderController.update)
+routes.delete('/orders/:id', OrderController.delete) 
+
 routes.get('/orders', OrderController.index)
 
 export default routes

@@ -107,6 +107,25 @@ class ProductController {
             console.log(error)
         }
     }
+
+    async delete(request, response) {
+        try {
+            const { id } = request.params
+
+            const product = await Product.findByPk(id)
+
+            if (!product) {
+                return response.status(404).json({ error: "Product not found!" })
+            }
+
+            await Product.destroy({ where: { id } })
+
+            return response.status(204).send()
+        } catch (error) {
+            console.log(error)
+            return response.status(500).json({ error: "Internal server error" })
+        }
+    }
 }
 
 export default new ProductController()
