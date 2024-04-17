@@ -38,4 +38,6 @@ app.listen(3001)
  // yarn add mongoose
  // https://www.mongodb.com/try/download/compass -> fazer download
  // yarn add cors
- //
+ // https://railway.app/new
+ // npx sequelize-cli db:migrate
+ // npx sequelize-cli db:migrate:undo:all

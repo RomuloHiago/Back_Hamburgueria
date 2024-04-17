@@ -1,9 +1,11 @@
 module.exports ={
     dialect: 'postgres',
-    host: 'localhost',
-    username: 'postgres',
-    password: 'postgres',
-    database: 'codeburguer',
+    url:'postgresql://postgres:AhxGRwQdvyRyiHQCJgesgchrAXMyUUiK@roundhouse.proxy.rlwy.net:28059/railway',
+    
+    // host: 'localhost',
+    // username: 'postgres',
+    // password: 'postgres',
+    // database: 'codeburguer',
     define:{
         timespamps: true, //* adiciona os campos 'createdAt' e 'updatedAt' automaticamente, ao criar um dado */,
         underscored: true,

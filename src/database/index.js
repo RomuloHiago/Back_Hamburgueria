@@ -3,7 +3,7 @@
 import  Sequelize  from 'sequelize';
 import mongoose from 'mongoose'
 
-import configDatabase from '../config/database'
+// import configDatabase from '../config/database'
 
 import User from '../app/models/User.js'
 import Product from '../app/models/Product.js'
@@ -18,8 +18,8 @@ class Database {
     }
 
     init() {
-        this.connection = new Sequelize(configDatabase
-            // 'postgresql://postgres:1cEedcE22C5aF6236bfG1**5bB6*e11C@viaduct.proxy.rlwy.net:49551/railway'
+        this.connection = new Sequelize(// configDatabase
+        'postgresql://postgres:AhxGRwQdvyRyiHQCJgesgchrAXMyUUiK@roundhouse.proxy.rlwy.net:28059/railway'
         )
         models.map((model) => model.init(this.connection))
             .map(
@@ -29,8 +29,9 @@ class Database {
 
     mongo() {
         this.mongoConnection = mongoose.connect(
-            'mongodb://localhost:27017/codeburger',
-            // 'mongodb://mongo:15E2F63ah21E-E2dHaEdd1AfF6e6HB25@roundhouse.proxy.rlwy.net:46441'
+            'mongodb://mongo:LBPAQhROaEOXgeokfOAuPzKIBMgkaCds@monorail.proxy.rlwy.net:38120'
+            // 'mongodb://localhost:27017/codeburger',
+            
         )
     }
 }

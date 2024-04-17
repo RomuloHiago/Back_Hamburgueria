@@ -21,7 +21,7 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "react-elastic-carousel": "^0.11.5",
-    "sequelize": "^6.37.1",
+    "sequelize": "^6.37.3",
     "strip-ansi": "^7.1.0",
     "uuid": "^9.0.1",
     "yup": "^1.4.0"
