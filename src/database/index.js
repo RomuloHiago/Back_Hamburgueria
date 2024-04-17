@@ -16,7 +16,7 @@ class Database {
         this.init()
         this.mongo()
     }
-
+ 
     init() {
         this.connection = new Sequelize(// configDatabase
         'postgresql://postgres:AhxGRwQdvyRyiHQCJgesgchrAXMyUUiK@roundhouse.proxy.rlwy.net:28059/railway'
