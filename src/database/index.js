@@ -14,12 +14,12 @@ const models = [User, Product, Category]
 class Database {
     constructor() {
         this.init()
-        this.mongo()
+        this.mongo() // mongo conectar
     }
  
     init() {
         this.connection = new Sequelize(// configDatabase
-        'postgresql://postgres:AhxGRwQdvyRyiHQCJgesgchrAXMyUUiK@roundhouse.proxy.rlwy.net:28059/railway'
+        'postgresql://postgres:nQVUoSXOgSjWQYzzItLiRrZpCEMkuVvY@viaduct.proxy.rlwy.net:45569/railway' // é aqui e no database
         )
         models.map((model) => model.init(this.connection))
             .map(
@@ -29,7 +29,7 @@ class Database {
 
     mongo() {
         this.mongoConnection = mongoose.connect(
-            'mongodb://mongo:LBPAQhROaEOXgeokfOAuPzKIBMgkaCds@monorail.proxy.rlwy.net:38120'
+            'mongodb://mongo:HPltmypBWTXxOSjZStfqbUdzqLvSvNxN@roundhouse.proxy.rlwy.net:30622'
             // 'mongodb://localhost:27017/codeburger',
             
         )

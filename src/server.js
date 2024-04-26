@@ -41,5 +41,20 @@ app.listen(port,'0.0.0.0')
  // https://www.mongodb.com/try/download/compass -> fazer download
  // yarn add cors
  // https://railway.app/new
- // npx sequelize-cli db:migrate
+ // npx sequelize-cli db:migrate /////////////////
  // npx sequelize-cli db:migrate:undo:all
+
+
+
+
+// --- AO CRIAR UMA CONEXÃO COM A NUVEM PASSO A PASSO
+
+// https://railway.app/project
+// para criar usuario e demias coisas no banco
+// npx sequelize-cli db:migrate -> vai subir toda as tabelas pra nuvem
+// TROCAR A POSTGRES_URL no index E database
+// TROCAR A MONGO_URL no index
+//
+//
+//
+

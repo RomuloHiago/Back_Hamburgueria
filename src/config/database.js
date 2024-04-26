@@ -1,6 +1,7 @@
 module.exports ={
     dialect: 'postgres',
-    url:'postgresql://postgres:AhxGRwQdvyRyiHQCJgesgchrAXMyUUiK@roundhouse.proxy.rlwy.net:28059/railway',
+    url:'postgresql://postgres:nQVUoSXOgSjWQYzzItLiRrZpCEMkuVvY@viaduct.proxy.rlwy.net:45569/railway', // é aqui e no index
+    
     
     // host: 'localhost',
     // username: 'postgres',
