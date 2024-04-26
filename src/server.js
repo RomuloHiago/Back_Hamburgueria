@@ -50,11 +50,14 @@ app.listen(port,'0.0.0.0')
 // --- AO CRIAR UMA CONEXÃO COM A NUVEM PASSO A PASSO
 
 // https://railway.app/project
-// para criar usuario e demias coisas no banco
-// npx sequelize-cli db:migrate -> vai subir toda as tabelas pra nuvem
+// criar conexao com o postgres
+// // com o mongodb
 // TROCAR A POSTGRES_URL no index E database
 // TROCAR A MONGO_URL no index
-//
+// para criar usuario e demais coisas no banco
+// npx sequelize-cli db:migrate -> vai subir toda as tabelas pra nuvem
+// criar conexao com o git hub no setting colocar como confg ->   yarn run dev
+//  
 //
 //
 
